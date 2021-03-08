@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="row">
+  <div class="col-xs-12">
+  
+    <div class="section-container-spacer">
+      <h1>Perfil</h1>
+      <p>Faça alterações</p>
+    </div>
+
+    <div class="section-container-spacer">
+       <form action="" class="reveal-content" method="post">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" name="nome" class="form-control" placeholder="Seu nome de usuário">
+              </div>
+              <div class="form-group">
+                <input type="text" name="email" class="form-control" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input type="file" name="img_perfil" class="form-control" placeholder="Selecione imagens">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="sobre" rows="3" placeholder="Sobre você"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">Adicionar</button>
+            </div>
+
+            <div class="col-md-6">
+              <h3>Siganos nas redes sociais para ficar por dentro de nossas ideias</h3>
+              <a class="fa-icon" href="https://www.instagram.com/" title="">
+                <i class="fa fa-instagram"></i>
+              </a>
+              <a class="fa-icon" href="https://dribbble.com/" title="">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a class="fa-icon" href="https://twitter.com/" title="">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a class="fa-icon" href="https://github.com/" title="">
+                <i class="fa fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </form>
+    </div>
+
+  </div>
+</div>
+
+{% endblock body %}

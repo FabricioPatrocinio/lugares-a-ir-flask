@@ -1,0 +1,35 @@
+.mt-3{
+    margin-top: 15px;
+}.mb-3{
+    margin-bottom: 15px;
+}
+
+.mt-5{
+    margin-top: 30px;
+}.mb-5{
+    margin-bottom: 30px;
+}
+
+.pl-3{
+    padding-left: 15px;
+}.pr-3{
+    padding-right: 15px;
+}
+
+img.img-perfil{
+    max-width: 60px;
+    border-radius: 50%;
+    border: 2px solid #ff312d;
+}
+
+.flex-content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    line-height: center;
+}
+
+/* File name */
+/* input[type='file'] {
+    display: none
+} */
