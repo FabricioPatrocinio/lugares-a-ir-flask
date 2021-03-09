@@ -2,7 +2,6 @@ from flask import render_template, url_for, flash, request, redirect
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.exc import IntegrityError
 from app.model import db, User
-from datetime import datetime
 from . import bp_auth
 import os
 
@@ -59,10 +58,6 @@ def allowed_file(filename):
 @bp_auth.route('/criar-conta', methods=['GET', 'POST'])
 def criar_conta():
     title = 'Criar conta'
-    nome = ''
-    img_perfil = ''
-    email = ''
-    senha = ''
 
     if request.method == 'POST':
         nome = request.form['nome']
@@ -108,9 +103,9 @@ def criar_conta():
 @bp_auth.route('/perfil', methods=['GET', 'POST'])
 def perfil():
     title = 'Perfil'
-    
+
     user_id = current_user.id
-    
+
     user = User.query.filter_by(id=user_id).first()
-    
+
     return render_template('perfil.html', title=title, user=user)

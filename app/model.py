@@ -36,8 +36,8 @@ class User(db.Model, UserMixin):
 class Publicacao(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    regiao = db.Column(db.String(100), nullable=False)
-    nome_local = db.Column(db.String(100), nullable=False)
+    regiao = db.Column('Cidades', db.ForeignKey('cidades.id'))
+    nome_local = db.Column(db.String(100), nullable=True)
     descricao = db.Column(db.String(2000))
     imagens = db.relationship('Imagens', backref='publicacao')
     time_created = db.Column(db.DateTime(
@@ -59,3 +59,22 @@ class Imagens(db.Model):
     def __init__(self, publicacao_id, nome):
         self.publicacao_id = publicacao_id
         self.nome = nome
+
+
+# Os estados e cidade você pode buscar SQLs completos na net
+class Estados(db.Model):
+    __tablename__ = 'estados'
+
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(75), nullable=True)
+    uf = db.Column(db.String(5), nullable=True)
+    estado = db.relationship('Cidades', backref='estados')
+
+
+class Cidades(db.Model):
+    __tablename__ = 'cidades'
+
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(120), nullable=True)
+    id_estado = db.Column(db.Integer, db.ForeignKey('estados.id'))
+    publicacao = db.relationship('Publicacao', backref='cidades')

@@ -11,6 +11,8 @@ flask-login = "*"
 flask-sqlalchemy = "*"
 freeze = "*"
 pymysql = "*"
+flask-uploads = "*"
+flask-dropzone = "*"
 
 [dev-packages]
 

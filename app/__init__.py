@@ -3,6 +3,7 @@ from flask import Flask
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from .model import configure as config_db, User
+from flask_dropzone import Dropzone
 
 
 def create_app():
@@ -15,14 +16,22 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:''@localhost:3306/lugares_a_ir'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    # Dropzone settings
+    app.config['DROPZONE_UPLOAD_MULTIPLE'] = True
+    app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
+    app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*'
+    app.config['DROPZONE_REDIRECT_VIEW'] = 'results'
+    
+    dropzone = Dropzone(app)
+
     config_db(app)
-    
+
     Migrate(app, app.db)
-    
-    login_manager =  LoginManager()
+
+    login_manager = LoginManager()
     login_manager.login_view = 'bp_auth.login'
     login_manager.init_app(app)
-    
+
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.filter_by(id=user_id).first()

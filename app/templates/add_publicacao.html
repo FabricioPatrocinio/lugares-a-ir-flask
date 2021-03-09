@@ -8,18 +8,31 @@
     </div>
 
     <div class="section-container-spacer">
-       <form action="" class="reveal-content" method="post">
+       <form action="{{ url_for('add_publicacao') }}" class="reveal-content" method="post">
           <div class="row">
             <div class="col-md-6">
-              <div class="form-group">
-                <input type="text" name="regiao" class="form-control" placeholder="Região ex: Cidade, Estado">
+              <div class="form-group mbd-6">
+                <select class="form-control" id="estado" name="estado">
+                  {% for estado in estado %}
+                    <option value="{{ estado.id }}">{{ estado.nome }}</option>
+                  {% endfor %}
+                </select>
               </div>
+
+              <div class="form-group mbd-6">
+                <select class="form-control" id="cidade" name="cidade">
+                  {% for cidade in cidade %}
+                    <option value="{{ cidade.id }}">{{ cidade.nome }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
               <div class="form-group">
-                <input type="text" name="nome_local" class="form-control" placeholder="Nome do local">
+                <input type="text" name="nome_local" class="form-control" placeholder="Nome do local pelo qual é conhecido">
               </div>
 
               <div class="form-group border">
-                <input type="file" class="custom-file-input" name="imagens" id="input-img"/>
+                <input type="file" class="custom-file-input" name="imagens[]" id="input-img"/>
                 <i class="fa fa-picture-o fa-2x" style="padding-right: 10px;"></i>
                 <label class="custom-file-label" id="file-name">Selecione imagens</label>
               </div>
