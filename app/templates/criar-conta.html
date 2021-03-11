@@ -96,7 +96,7 @@
                       {{ message }}
                     </div>
                     {% if category == 'success' %}
-                      <a href="{{ url_for('bp_auth.login')}}" class="btn btn-lg btn-primary btn-block mb-3">Fazer login</a>
+                      <a href="{{ url_for('bp_auth.login')}}" class="btn btn-lg btn-primary btn-block mb-5">Fazer login</a>
                     {% endif %}
                   {% endfor %}
                 {% endif %}
@@ -105,20 +105,43 @@
               <div class="form-group">
                 <input type="text" name="nome" class="form-control" value="" placeholder="Nome">
               </div>
-              <div class="form-group border">
+              
+              <div class="form-group">
+                <select class="form-control" id="estado" name="estado">
+                  <option value="">Selecione seu estado</option>
+                  {% for estado in estado %}
+                    <option value="{{ estado.id }}">{{ estado.nome }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <select class="form-control" id="cidade" name="cidade">
+                  <option value="">Selecione sua cidade</option>
+                  {% for cidade in cidade %}
+                    <option value="{{ cidade.id }}">{{ cidade.nome }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="form-group">
                 <input type="file" class="custom-file-input" name="img_perfil" id="input-img"/>
                 <i class="fa fa-picture-o fa-2x" style="padding-right: 10px;"></i>
                 <label class="custom-file-label" id="file-name">Selecione uma foto de perfil</label>
               </div>
+
               <div class="form-group">
                 <input type="email" name="email" class="form-control" placeholder="email">
               </div>
+
               <div class="form-group">
                 <input type="password" name="senha" class="form-control" placeholder="Crie sua senha">
               </div>
+
               <div class="form-group">
                 <input type="password" name="conf_senha" class="form-control" placeholder="Confirme sua senha">
               </div>
+              
               <button type="submit" class="btn btn-info btn-lg">Criar conta</button>
 
               <div class="section-container-spacer mt-5">
@@ -167,6 +190,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- Bootstrap js components -->
 
+<script type="text/javascript" src="{{ url_for('static', filename='js/select-cidades.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/main.85741bff.js') }}"></script>
 </body>
 </html>

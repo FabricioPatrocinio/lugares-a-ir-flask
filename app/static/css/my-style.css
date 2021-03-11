@@ -29,6 +29,10 @@ img.img-perfil{
     line-height: center;
 }
 
+a.link-name{
+    font-size: 10pt;
+}
+
 /* File name */
 /* input[type='file'] {
     display: none

@@ -1,7 +1,7 @@
-from flask import render_template, url_for, flash, request, redirect
+from flask import render_template, url_for, flash, request, redirect, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.exc import IntegrityError
-from app.model import db, User
+from app.model import db, User, Estados, Cidades
 from . import bp_auth
 import os
 
@@ -55,18 +55,22 @@ def allowed_file(filename):
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@bp_auth.route('/criar-conta', methods=['GET', 'POST'])
+@bp_auth.route('/criar-conta/', methods=['GET', 'POST'])
 def criar_conta():
     title = 'Criar conta'
 
+    # Estados, nao passados em json
+    estado = Estados.query.all()
+
     if request.method == 'POST':
         nome = request.form['nome']
+        regiao = request.form['cidade']
         email = request.form['email']
         senha = request.form['senha']
         conf_senha = request.form['conf_senha']
 
         try:
-            if nome != '' and email != '' and senha != '':
+            if nome != '' and regiao != '' and email != '' and senha != '':
 
                 if request.files:
                     imagem = request.files['img_perfil']
@@ -82,7 +86,7 @@ def criar_conta():
                         img_perfil = imagem.filename
 
                         if conf_senha == senha:
-                            conta = User(nome, email, senha, img_perfil)
+                            conta = User(nome, regiao, email, senha, img_perfil)
                             db.session.add(conta)
                             db.session.commit()
 
@@ -97,7 +101,21 @@ def criar_conta():
             db.session.rollback()
             flash('Seu email ou nome de usuário já estão em uso, por favor tente novamente usando outro email ou nome de usuário', 'danger')
 
-    return render_template('criar-conta.html', title=title)
+    return render_template('criar-conta.html', title=title, estado=estado)
+
+
+@bp_auth.route('/criar-conta/cidade/<id_estado>')
+def cidade(id_estado):
+    cidade = Cidades.query.filter_by(id_estado=id_estado).all()
+    cidadeArray = []
+
+    for cidade in cidade:
+        cidadeObj = {}
+        cidadeObj['id'] = cidade.id
+        cidadeObj['nome'] = cidade.nome
+        cidadeArray.append(cidadeObj)
+
+    return jsonify({'cidadearray': cidadeArray})
 
 
 @bp_auth.route('/perfil', methods=['GET', 'POST'])

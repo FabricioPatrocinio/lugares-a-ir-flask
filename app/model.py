@@ -15,6 +15,7 @@ def configure(app):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(50), nullable=False, unique=True)
+    regiao = db.Column('Cidades', db.ForeignKey('cidades.id'))
     email = db.Column(db.String(100), nullable=False, unique=True)
     senha = db.Column(db.String(255), nullable=False)
     img_perfil = db.Column(db.String(255), nullable=True)
@@ -23,8 +24,9 @@ class User(db.Model, UserMixin):
         timezone=True), server_default=func.now())
     time_updated = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
-    def __init__(self, nome, email, senha, img_perfil):
+    def __init__(self, nome, regiao, email, senha, img_perfil):
         self.nome = nome
+        self.regiao = regiao
         self.email = email
         self.senha = generate_password_hash(senha)
         self.img_perfil = img_perfil
@@ -78,3 +80,4 @@ class Cidades(db.Model):
     nome = db.Column(db.String(120), nullable=True)
     id_estado = db.Column(db.Integer, db.ForeignKey('estados.id'))
     publicacao = db.relationship('Publicacao', backref='cidades')
+    user = db.relationship('User', backref='cidades')

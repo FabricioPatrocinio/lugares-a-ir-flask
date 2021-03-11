@@ -38,8 +38,8 @@
     <div class="navbar-collapse" id="navbar-collapse">
       <div class="site-header flex-content">
           <img class="img-responsive img-perfil" alt="" src="{{ url_for('static', filename='uploads/img/perfil/') }}{{ user.img_perfil }}">
-          <a class="site-brand" href="{{ url_for('bp_publicacoes.index') }}" title="">
-            {{ user.nome }}
+          <a class="site-brand link-name" href="{{ url_for('bp_publicacoes.index') }}" title="">
+            @{{ user.nome }}
           </a>
       </div>
 
