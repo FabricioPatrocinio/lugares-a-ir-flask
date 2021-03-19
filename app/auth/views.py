@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.exc import IntegrityError
 from app.model import db, User, Estados, Cidades
 from . import bp_auth
+from werkzeug.utils import secure_filename
 import os
 
 # Caminho para o updload da imagem
@@ -81,12 +82,15 @@ def criar_conta():
                             flash(
                                 'O arquivo precisa ser imagem do tipo PNG, JPG, JPEG ou GIF', 'danger')
 
+                        filename = secure_filename(imagem.filename)
+
                         imagem.save(os.path.join(
-                            IMAGE_UPLOADS, imagem.filename))
-                        img_perfil = imagem.filename
+                            IMAGE_UPLOADS, filename))
+                        img_perfil = filename
 
                         if conf_senha == senha:
-                            conta = User(nome, regiao, email, senha, img_perfil)
+                            conta = User(nome, regiao, email,
+                                         senha, img_perfil)
                             db.session.add(conta)
                             db.session.commit()
 

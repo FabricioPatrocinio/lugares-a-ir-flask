@@ -8,11 +8,26 @@
     </div>
 
     <div class="section-container-spacer">
-       <form action="{{ url_for('bp_publicacoes.add_publicacao') }}" class="reveal-content" method="post">
+       <form action="{{ url_for('bp_publicacoes.add_publicacao') }}" class="reveal-content" enctype="multipart/form-data" method="post">
           <div class="row">
             <div class="col-md-6">
+
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if  messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                      {{ message }}
+                    </div>
+                    {% if category == 'success' %}
+                      {{ message }}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+
               <div class="form-group mbd-6">
                 <select class="form-control" id="estado" name="estado">
+                  <option value="{{ user.cidades.estados.id }}">{{ user.cidades.estados.nome }}</option>
                   {% for estado in estado %}
                     <option value="{{ estado.id }}">{{ estado.nome }}</option>
                   {% endfor %}
@@ -21,6 +36,7 @@
 
               <div class="form-group mbd-6">
                 <select class="form-control" id="cidade" name="cidade">
+                  <option value="{{ user.cidades.id }}">{{ user.cidades.nome }}</option>
                   {% for cidade in cidade %}
                     <option value="{{ cidade.id }}">{{ cidade.nome }}</option>
                   {% endfor %}
@@ -32,13 +48,13 @@
               </div>
 
               <div class="form-group border">
-                <input type="file" class="custom-file-input" name="imagens[]" id="input-img"/>
+                <input type="file" class="custom-file-input" name="imagens[]" multiple="true" autocomplete="off" id="input-img" required/>
                 <i class="fa fa-picture-o fa-2x" style="padding-right: 10px;"></i>
                 <label class="custom-file-label" id="file-name">Selecione imagens</label>
               </div>
 
               <div class="form-group">
-                <textarea class="form-control" name="descricao" rows="3" placeholder="Descrição"></textarea>
+                <textarea class="form-control" name="descricao" rows="3" placeholder="Descrição ou fale sobre o lugar ou suas experiência"></textarea>
               </div>
               <button type="submit" class="btn btn-primary btn-lg">Adicionar</button>
             </div>

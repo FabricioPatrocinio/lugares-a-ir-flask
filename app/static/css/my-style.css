@@ -31,6 +31,7 @@ img.img-perfil{
 
 a.link-name{
     font-size: 10pt;
+    text-transform: lowercase;
 }
 
 /* File name */
