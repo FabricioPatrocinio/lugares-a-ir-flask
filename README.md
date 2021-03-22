@@ -6,12 +6,6 @@ Usando Python com Flask
 ## Ideia
 A ideia é criar um rede social onde as pessoas possam adicionar fotos de paisagens ou lugares de lazer, descrição e endereço do local.
 
-### Principais recursos
-- Tema free do bootstrap.
-- Todos os recursos do python estão em requirements.txt
-- Para gerar imagens aleatórias estou usando lorem ipsum imagens.
-- No slide das imagens estou usando framework Glider.js
-
 ### Dependências usadas
 As dependências que usei se encontram no requirements.txt. Para instalar use o comando:
 ```
@@ -40,5 +34,6 @@ flask run (Para rodar o servidor)
 
 ### Outros recursos usados
 - Tema free do Mashup Template/Unsplash.
-- Gliter para criar os carousels.
+- Gliter JS para criar os carousels.
 - Banco de dados com todas cidades e estados do Brasil, com tabelas relacionais.
+- Para gerar imagens aleatórias estou usando lorem ipsum imagens.
