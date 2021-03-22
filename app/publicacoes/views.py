@@ -49,7 +49,7 @@ def add_publicacao():
             if cidade != '' and nome_local != '' and descricao != '':
 
                 if 'imagens[]' not in request.files:
-                    flash('Nenhuma imagem selecionada.', 'danger')
+                    flash('Nenhuma imagem selecionada. Por favor, selecione pelo menos uma imagem.', 'danger')
                     return redirect(request.url)
 
                 files = request.files.getlist('imagens[]')

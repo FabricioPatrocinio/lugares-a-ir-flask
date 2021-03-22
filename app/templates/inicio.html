@@ -3,43 +3,33 @@
 
 <div class="hero-full-wrapper">
   <div class="grid">
-  <div class="gutter-sizer"></div>
+    <div class="gutter-sizer"></div>
     <div class="grid-sizer"></div>
     
     <div class="grid-item">
-      <img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-01.jpeg') }}">
-      <a href="" class="project-description">
-        <div class="project-text-holder">
-          <div class="project-text-inner">
-            <h3>Rio longá</h3>
-            <p class="pl-3 pr-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ea nihil est iusto culpa saepe quibusdam perspiciatis mollitia. Ab unde incidunt, consequuntur quidem deserunt expedita aperiam iusto cumque ut eaque.</p>
-          </div>
+      <div class="glider-contain">
+        <div class="glider">
+          <div><img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-02.jpeg') }}"></div>
+          <div><img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-01.jpeg') }}"></div>
+          <div><img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-06.jpeg') }}"></div>
         </div>
-      </a>
-    </div>
-    
-    <div class="grid-item">
-      <img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-06.jpeg') }}">
-      <a href="./project.html" class="project-description">
-        <div class="project-text-holder">
-          <div class="project-text-inner">
-            <h3>Vivamus vestibulum</h3>
-            <p>Discover more</p>
-          </div>
+        <div class="floating-circle">
+          <div role="tablist" class="dots"></div>
         </div>
-      </a>
+      </div>
     </div>
 
     <div class="grid-item">
-      <img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-02.jpeg') }}">
-      <a href="./project.html" class="project-description">
-        <div class="project-text-holder">
-          <div class="project-text-inner">
-            <h3>Vivamus vestibulum</h3>
-            <p>Discover more</p>
-          </div>
+      <div class="glider-contain">
+        <div class="glider">
+          <div><img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-02.jpeg') }}"></div>
+          <div><img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-01.jpeg') }}"></div>
+          <div><img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-06.jpeg') }}"></div>
         </div>
-      </a>
+        <div class="floating-circle">
+          <div role="tablist" class="dots"></div>
+        </div>
+      </div>
     </div>
 
     <div class="grid-item">
@@ -91,6 +81,18 @@
     </div>
 
     <div class="grid-item">
+      <div class="glider-contain">
+        <div class="glider">
+          <div><img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-02.jpeg') }}"></div>
+          <div><img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-01.jpeg') }}"></div>
+        </div>
+        <div class="floating-circle">
+          <div role="tablist" class="dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-item">
       <img class="img-responsive" alt="" src="{{ url_for('static', filename='assets/images/img-02.jpeg') }}">
       <a href="./project.html" class="project-description">
         <div class="project-text-holder">
@@ -105,10 +107,8 @@
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function (event) {
-     masonryBuild();
-  });
-</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/glider/glider.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/glider.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/grid-for-theme.js') }}"></script>
 
 {% endblock body %}
